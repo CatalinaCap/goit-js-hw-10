@@ -8,6 +8,7 @@ const catInfo = document.querySelector('.cat-info');
 document.addEventListener('DOMContentLoaded', () => {
   loader.classList.remove('hidden');
   breedSelect.classList.add('hidden');
+  errorText.classList.add('hidden');
 
   fetchBreeds()
     .then(breeds => {
