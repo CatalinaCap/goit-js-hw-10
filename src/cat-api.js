@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 axios.defaults.headers.common['x-api-key'] =
-  'live_6Fv0e9Eh8ZiLKUbrFmBn8Ms2QkBfm54x7uw0SlzZitFIRWPvMAlKBWvUEzmdm4xR';
+  'live_uDb0QnEofrCH99KzNogjGjFJEiLbTOGn9xtKxn2yZvg3WOqLhGGfvewfnCwHa5HC';
 
 export function fetchBreeds() {
   return axios
@@ -14,9 +14,17 @@ export function fetchBreeds() {
 }
 
 export function fetchCatByBreed(breedId) {
+  const url = `https://api.thecatapi.com/v1/images/search?breed_ids=${breedId}`;
+
   return axios
-    .get(`https://api.thecatapi.com/v1/images/search?breed_ids=${breedId}`)
-    .then(response => response.data[0])
+    .get(url)
+    .then(response => {
+      if (response.status === 200 && response.data.length > 0) {
+        return response.data[0];
+      } else {
+        throw new Error('No data found for this breed ID');
+      }
+    })
     .catch(error => {
       console.error('Error fetching cat by breed:', error);
       throw error;

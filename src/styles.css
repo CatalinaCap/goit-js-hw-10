@@ -1,0 +1,23 @@
+.hidden {
+  display: none;
+}
+
+.loader {
+  font-weight: bold;
+  text-align: center;
+}
+
+.error {
+  color: red;
+  text-align: center;
+  display: none;
+}
+
+.cat-info {
+  margin-top: 20px;
+}
+.cat-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
